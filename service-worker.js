@@ -1,38 +1,44 @@
-const CACHE_NAME = 'barbearia-cache-v1';
+
+const CACHE_NAME = 'barbearia-cache-v2';
 const urlsToCache = [
   '/',
   '/index.html',
   '/about.html',
   '/menu.html',
   '/book.html',
-  '/style.css',
-  '/responsive.css',
-  '/custom.js',
-  '/bootstrap.css',
-  '/font-awesome.min.css',
-  '/icons/icon-192x192.png',
-  '/icons/icon-512x512.png'
+  '/css/style.css',
+  '/css/bootstrap.css',
+  '/css/responsive.css',
+  '/css/font-awesome.min.css',
+  '/js/custom.js',
+  '/js/bootstrap.js',
+  '/js/jquery-3.4.1.min.js',
+  '/icons/106.png',
+  '/icons/512.png',
+  '/offline.html'  // nova página para quando estiver offline
 ];
 
-// Instalação do Service Worker e cache dos arquivos
+// Instalação do Service Worker
 self.addEventListener('install', event => {
+  console.log('[ServiceWorker] Instalando...');
   event.waitUntil(
     caches.open(CACHE_NAME)
       .then(cache => {
-        console.log('Arquivos cacheados com sucesso!');
+        console.log('[ServiceWorker] Cacheando arquivos');
         return cache.addAll(urlsToCache);
       })
   );
 });
 
-// Ativação do Service Worker e atualização do cache
+// Ativação do Service Worker
 self.addEventListener('activate', event => {
+  console.log('[ServiceWorker] Ativando e limpando caches antigos...');
   event.waitUntil(
     caches.keys().then(cacheNames => {
       return Promise.all(
         cacheNames.map(cache => {
           if (cache !== CACHE_NAME) {
-            console.log('Cache antigo removido:', cache);
+            console.log('[ServiceWorker] Deletando cache antigo:', cache);
             return caches.delete(cache);
           }
         })
@@ -41,17 +47,16 @@ self.addEventListener('activate', event => {
   );
 });
 
-// Interceptação das requisições (modo offline)
+// Interceptando requisições
 self.addEventListener('fetch', event => {
   event.respondWith(
     caches.match(event.request)
       .then(response => {
-        // Se encontrar no cache, retorna do cache
         if (response) {
-          return response;
+          return response; // Responde com o cache
         }
-        // Senão, busca da internet
-        return fetch(event.request);
+        return fetch(event.request)
+          .catch(() => caches.match('/offline.html')); // Se der erro (offline), mostra página offline
       })
   );
 });
