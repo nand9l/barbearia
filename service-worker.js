@@ -15,6 +15,7 @@ const urlsToCache = [
   '/js/jquery-3.4.1.min.js',
   '/icons/196.png',
   '/icons/512.png',
+  '/offline.html'
   
 ];
 
