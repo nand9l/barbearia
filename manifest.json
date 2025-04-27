@@ -1,0 +1,45 @@
+{
+    "name": "Barberia360",
+    "short_name": "Barber360",
+    "id": "/barber360-pwa",
+    "description": "Aplicativo para agendamento de horários e apresentação dos serviços da barbearia.",
+    "start_url": "/index.html",
+    "scope": "/",
+    "theme_color": "#ffbe33",
+    "background_color": "#222831",
+    "display": "standalone",
+    "display_override": ["standalone", "browser"],
+    "lang": "pt-BR",
+    "dir": "ltr",
+    "orientation": "any",
+    "categories": ["lifestyle", "shopping", "beauty"],
+    "shortcuts": [
+      {
+        "name": "Agendar Horário",
+        "short_name": "Agendar",
+        "description": "Reserve seu horário rapidamente",
+        "url": "/book.html",
+        "icons": [
+          {
+            "src": "icons/icon-192x192.png",
+            "sizes": "192x192",
+            "type": "image/png"
+          }
+        ]
+      },
+      {
+        "name": "Sobre a Barbearia",
+        "short_name": "Sobre",
+        "description": "Conheça nossa história e equipe",
+        "url": "/about.html",
+        "icons": [
+          {
+            "src": "icons/icon-192x192.png",
+            "sizes": "192x192",
+            "type": "image/png"
+          }
+        ]
+      }
+    ]
+  }
+  
