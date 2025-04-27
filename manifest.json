@@ -8,11 +8,23 @@
     "theme_color": "#ffbe33",
     "background_color": "#222831",
     "display": "standalone",
-    "display_override": ["standalone", "browser"],
+    "display_override": ["window-controls-overlay", "standalone", "browser"],
     "lang": "pt-BR",
     "dir": "ltr",
     "orientation": "any",
     "categories": ["lifestyle", "shopping", "beauty"],
+    "icons": [
+      {
+        "src": "icons/196.png",
+        "sizes": "196x196",
+        "type": "image/png"
+      },
+      {
+        "src": "icons/512.png",
+        "sizes": "512x512",
+        "type": "image/png"
+      }
+    ],
     "shortcuts": [
       {
         "name": "Agendar Horário",
